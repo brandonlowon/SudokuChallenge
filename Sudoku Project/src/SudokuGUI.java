@@ -18,7 +18,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * SudokuGUI class creates a GUI interface to represent the Sudoku Board
+ * SudokuGUI class creates a GUI interface to represent the Sudoku Board. The
+ * GUI utilizes JFrame libraries to create the interactive board.
  * 
  * @author Identifier 629
  *
@@ -49,9 +50,9 @@ public class SudokuGUI extends JFrame {
 
 	/*
 	 * applyDocumentFilter() iterates through the ArrayList of JTextField objects or
-	 * 'cells' and e nsures that the user can allow input one integer for each box.
+	 * 'cells' and ensures that the user can allow input one integer for each box.
 	 * For this method I found solutions online how to implement it and modified the
-	 * code to only accept integers.
+	 * code myself to only accept integers.
 	 */
 	private void applyDocumentFilter() {
 		for (int i = 0; i < cellList.size(); i++) {
@@ -75,6 +76,9 @@ public class SudokuGUI extends JFrame {
 		}
 	}
 
+	/**
+	 * createList() method populates our ArrayList of JTextField objects
+	 */
 	private void createList() {
 		addToList(box11);
 		addToList(box12);
@@ -170,9 +174,13 @@ public class SudokuGUI extends JFrame {
 
 	private void addToList(JTextField cell) {
 		cellList.add(cell);
-
 	}
 
+	/**
+	 * The main code in creating the GUI window for the Sudoku board. I realize that
+	 * it is more efficient to create an ArrayList of JTextField objects with the
+	 * usage of a for loop
+	 */
 	public void createGUI() {
 
 		fontBox = new Font("SansSerif", Font.BOLD, 40);
@@ -703,6 +711,10 @@ public class SudokuGUI extends JFrame {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * createBorder() method utilizes the BorderFactory methods to established the
+	 * individual 3x3 cells in our SudokuBoard
+	 */
 	private void createBorder() {
 		Border oldBorder = box12.getBorder();
 		Border botRight = BorderFactory.createMatteBorder(0, 0, 3, 3, Color.BLACK);
@@ -762,7 +774,6 @@ public class SudokuGUI extends JFrame {
 		return newButton;
 	}
 
-	
 	public void actionPerformed(ActionEvent e) {
 	}
 

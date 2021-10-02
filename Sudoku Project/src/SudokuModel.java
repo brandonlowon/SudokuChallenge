@@ -3,6 +3,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+/**
+ * SudokuModel class represents the model class in our model-view-controller
+ * design pattern. This class will contain the data members and functions to
+ * execute the reading of text files, populating of the 2D int array to
+ * represent the sudoku puzzle and finally the method to solve the puzzle.
+ * 
+ * @author Identifier 629
+ *
+ */
 public class SudokuModel implements ISudokuChallenge {
 	private SudokuViewController viewControl;
 	public int[][] board;
@@ -19,6 +28,10 @@ public class SudokuModel implements ISudokuChallenge {
 		this.viewControl = viewControl;
 	}
 
+	/**
+	 * loadBoard method parses a fileName inputed by the user and creates a raw String from the text file.
+	 * @param fileName is the name of the text file
+	 */
 	public void loadBoard(String fileName) {
 		String text = "";
 		try {
@@ -26,7 +39,7 @@ public class SudokuModel implements ISudokuChallenge {
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			getViewControl().displayErrorFile();
+			getViewControl().displayErrorFile(); //Displays Error Popup for file not found
 			return;
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -34,12 +47,17 @@ public class SudokuModel implements ISudokuChallenge {
 			return;
 		}
 
-		createGrid(text);
+		preProcess(text);
 	}
 
-	public void createGrid(String text) {
+	/**
+	 * preProcess method will clean up the string from the text file, removing any all non-integer chars and replacing 'empty spaces' with zeroes.
+	 * @param text is the string from the text file.
+	 */
+	public void preProcess(String text) {
 		String replacedPeriod = text.replace(".", "0");
 		String removeChars = replacedPeriod.replaceAll("[-+\n|\\s]", "");
+		//We call the provided Parse method if false, another popup occurs letting the user know of an error in the provided text file.
 		if (Parse(removeChars, getBoard())) {
 
 		} else {
@@ -62,12 +80,12 @@ public class SudokuModel implements ISudokuChallenge {
 			return false;
 		} else {
 			int listIndex = 0;
-			for(int i=0; i<rows; i++) {
-				for(int j = 0; j < columns; j++) {
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < columns; j++) {
 					board[i][j] = Integer.parseInt(list[listIndex++]);
 				}
 			}
-			
+
 			for (int i = 0; i < list.length; i++) {
 				getViewControl().getGuiFrame().getCellList().get(i).setText(list[i]);
 			}
@@ -86,12 +104,15 @@ public class SudokuModel implements ISudokuChallenge {
 				solvedNumber[solvedNumberIndex++] = getSolvedBoard()[i][j];
 			}
 		}
-	
+
 		for (int i = 0; i < solvedNumber.length; i++) {
 			getViewControl().getGuiFrame().getCellList().get(i).setText(Integer.toString(solvedNumber[i]));
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public boolean Solve(int[][] inputBoard, int[][] solvedBoard) {
 
@@ -180,7 +201,7 @@ public class SudokuModel implements ISudokuChallenge {
 	public SudokuViewController getViewControl() {
 		return viewControl;
 	}
-	
+
 	public int[][] getBoard() {
 		return board;
 	}
@@ -196,6 +217,5 @@ public class SudokuModel implements ISudokuChallenge {
 	public void setSolvedBoard(int[][] solvedBoard) {
 		this.solvedBoard = solvedBoard;
 	}
-	
-	
+
 }
