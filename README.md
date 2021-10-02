@@ -12,11 +12,13 @@ The user can run the program using two methods
 1. Download the SudokuProgramSolver.jar file and sample text files into the location of your JAVA SDK path directory
 2. Open the command prompt
 3. Enter java -jar SudokuProgramSolver.jar
-OR
+<br />OR
+<br>
+
 1. Open a new Java project in your IDE and import the source files contained in the SudokuProject folder
 2. Running the driver code as a Java Application which is the SudokuViewController.java
 
-#Running
+# Running The Program
 Once started, the program has onscreen instructions on how to load and solve a puzzle or manually enter one. The follow insructions are;
 To load a formatted text file:
 1. Click Load
