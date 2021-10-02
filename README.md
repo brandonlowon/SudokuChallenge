@@ -31,3 +31,6 @@ To manually enter a puzzle yourself:
 To solve a puzzle:
 1. Click Solve (once a puzzle has been loaded)
 
+# Thanks
+Thank you for your time in reviewing and examining my code. I appreciate your time and efforts.
+
