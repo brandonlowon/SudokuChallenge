@@ -28,7 +28,7 @@ public class SudokuGUI extends JFrame {
 	private JFrame frame;
 	private JPanel panel;
 	private JTextArea display;
-	private JLabel welcomeLabel;
+	private JLabel welcomeLabel, welcomeMessage;
 	public ArrayList<JTextField> cellList;
 	private JTextField box11, box12, box13, box14, box15, box16, box17, box18, box19, box21, box22, box23, box24, box25,
 			box26, box27, box28, box29, box31, box32, box33, box34, box35, box36, box37, box38, box39, box41, box42,
@@ -38,7 +38,7 @@ public class SudokuGUI extends JFrame {
 			box93, box94, box95, box96, box97, box98, box99;
 
 	private Font fontBox;
-	private JButton clearButton, solveButton, newButton;
+	private JButton clearButton, solveButton, loadButton, customButton;
 
 	public SudokuGUI() {
 		createGUI();
@@ -48,7 +48,7 @@ public class SudokuGUI extends JFrame {
 		applyDocumentFilter();
 	}
 
-	/*
+	/**
 	 * applyDocumentFilter() iterates through the ArrayList of JTextField objects or
 	 * 'cells' and ensures that the user can allow input one integer for each box.
 	 * For this method I found solutions online how to implement it and modified the
@@ -187,13 +187,19 @@ public class SudokuGUI extends JFrame {
 		frame = new JFrame();
 		panel = new JPanel();
 
-		frame.setSize(1080, 1080);
+		frame.setSize(1080, 1000);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		panel.setLayout(null);
 
-		welcomeLabel = new JLabel("Sudoku Board");
-		welcomeLabel.setBounds(400, 1, 700, 50);
+		welcomeMessage = new JLabel("<html>"
+				+ " Welcome! To begin, either press Load to enter in a text file formatted sudoku Puzzle and press Solve or manually enter your own puzzle on the screen, press Custom and then Solve!" +"<html>");
+		welcomeMessage.setBounds(40, 25, 850, 100);
+		welcomeMessage.setFont(new Font("Serif", Font.BOLD, 18));
+		panel.add(welcomeMessage);
+
+		welcomeLabel = new JLabel("Sudoku Board Solver");
+		welcomeLabel.setBounds(350, 1, 700, 50);
 		welcomeLabel.setFont(new Font("Serif", Font.BOLD, 40));
 		panel.add(welcomeLabel);
 
@@ -704,9 +710,13 @@ public class SudokuGUI extends JFrame {
 		solveButton.setBounds(900, 600, 100, 50);
 		panel.add(getSolveButton());
 
-		newButton = new JButton("New");
-		newButton.setBounds(900, 200, 100, 50);
-		panel.add(getNewButton());
+		loadButton = new JButton("Load");
+		loadButton.setBounds(900, 200, 100, 50);
+		panel.add(getLoadButton());
+
+		customButton = new JButton("Custom");
+		customButton.setBounds(900, 800, 100, 50);
+		panel.add(getCustomButton());
 
 		frame.setVisible(true);
 	}
@@ -770,8 +780,12 @@ public class SudokuGUI extends JFrame {
 		return solveButton;
 	}
 
-	public JButton getNewButton() {
-		return newButton;
+	public JButton getLoadButton() {
+		return loadButton;
+	}
+
+	public JButton getCustomButton() {
+		return customButton;
 	}
 
 	public void actionPerformed(ActionEvent e) {

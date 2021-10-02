@@ -13,3 +13,5 @@ public interface ISudokuChallenge
 	public boolean Solve(int[][] inputBoard, int[][] solvedBoard);
 
 }
+
+
